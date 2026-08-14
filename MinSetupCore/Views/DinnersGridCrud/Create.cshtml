@@ -1,0 +1,18 @@
+@model DinnerInput
+@using (Html.BeginForm())
+{
+    using (Html.Awe().BeginContext())
+    {
+        <div class="eform">
+            <div class="earea">
+                @Html.EditorFor(o => o.Name)
+                @Html.EditorFor(o => o.Date)
+                @Html.EditorFor(o => o.ChefId)
+            </div>
+            <div class="earea">                
+                @Html.EditorFor(o => o.BonusMealId)
+                @Html.EditorFor(o => o.MealsIds)
+            </div>
+        </div>
+    }
+}

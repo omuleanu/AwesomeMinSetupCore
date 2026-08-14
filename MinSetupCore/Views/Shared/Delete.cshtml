@@ -1,0 +1,9 @@
+@model DeleteConfirmInput
+<div style="padding: 1em 3em;">
+    @using (Html.BeginForm())
+    {
+    }
+    Are you sure you want to delete @Model.Type <b>@(Model.Name ?? "this item")</b> ?
+    @*used by the popupform .OnLoad func*@
+    <input type="hidden" name="key" value="@(Model.Id)" />
+</div>

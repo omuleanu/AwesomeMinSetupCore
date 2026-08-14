@@ -1,0 +1,59 @@
+@using MinSetupCore.Models
+@{
+    ViewData["Title"] = "Grid CRUD";
+}
+
+<h1>Grid Crud Demo - ASP.net Core Awesome</h1>
+@{
+    var gridId = "DinnersGrid";
+}
+@Html.InitCrudPopupsForGrid(gridId, "DinnersGridCrud")
+
+<div class="bar">
+    <button type="button" class="awe-btn o-btnf" onclick="awe.open({id: 'create@(gridId)' })">
+        @MyAweIcons.PlusIco()
+        Create
+    </button>
+
+    <button type="button" class="awe-btn o-btnf"
+            onclick="awe.open({id: 'create@(gridId)', popupType: 'drawer', from: 'left', width: 0 })">
+        @MyAweIcons.PanelLeftIco()
+        Create drawer
+    </button>
+
+    <div style="margin-left: auto;">
+        @Html.Awe().TextBox("txtSearch").Placeholder("search...").CssClass("searchtxt")
+    </div>
+</div>
+
+@(Html.Awex().Grid<Dinner>(gridId)
+    .Main()
+    .Url(Url.Action("GridGetItems", "DinnersGridCrud"))
+    .Parent("txtSearch", "search")
+    .Attr("data-syncg", "dinner")
+    .Height(350)
+    .Columns(b =>
+    {
+        b.Add(o => o.Id).Width(75);
+        b.Add(o => o.Name);
+        b.Add(o => o.Date);
+        b.Add(o => new { o.Chef.FirstName, o.Chef.LastName });
+        b.Add(o => o.Meals.Select(m => m.Name)).Grow(2).MinWidth(200);
+        b.Add(o => o.BonusMeal.Name).Header("Bonus Meal");
+        b.Add(Html.EditDelColumn(gridId));
+    })
+)
+
+<br />
+<br />
+<div style="width: 100%; overflow: auto;">
+    Built using the Grid and PopupForm helpers, initialized via `InitCrudPopupsForGrid`.<br />
+    Each PopupForm has an assigned Success JavaScript function, located in `aweUtils.js`.<br />
+    Post actions return a JSON object indicating success.
+    This JSON includes an id property, used to flash the row upon success.<br />
+    The Delete PopupForm uses an `OnLoad` JavaScript function to animate the row before deletion.<br />
+    For PopupForm/Popup views use return PartialView to bypass _viewstart.cshtml, preventing _Layout.cshtml from being applied.
+</div>
+<br />
+<br />
+<br />

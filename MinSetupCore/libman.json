@@ -1,0 +1,14 @@
+{
+  "version": "3.0",
+  "defaultProvider": "jsdelivr",
+  "libraries": [
+    {
+      "library": "ovld@1.0.12",
+      "destination": "wwwroot/lib/ovld/",
+      "files": [
+        "dist/ovld.js",
+        "dist/ovld.unobtrusive.js"
+      ]
+    }
+  ]
+}
