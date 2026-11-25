@@ -1,4 +1,3 @@
-using Microsoft.Extensions.DependencyInjection;
 using MinSetupCore.Data;
 using Omu.AwesomeMvc;
 
@@ -8,8 +7,6 @@ var provider = new AweMetaProvider();
 
 // Add services to the container.
 var mvcBuilder = builder.Services.AddControllersWithViews(o => o.ModelMetadataDetailsProviders.Add(provider));
-
-mvcBuilder.AddRazorRuntimeCompilation(); // compile views on change 
 
 var app = builder.Build();
 

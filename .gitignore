@@ -116,6 +116,8 @@ AweCoreDemo/oss/awetheme/
 node_modules
 chats.txt
 site.min.js.map
+awe
+.vscode
 
 # Sentry Config File
 .sentryclirc
